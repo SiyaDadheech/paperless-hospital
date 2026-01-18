@@ -1,0 +1,97 @@
+/* Global Reset */
+:root {
+  --hospital-blue: #0056b3;
+  --hospital-light-blue: #eef5ff;
+  --success-green: #28a745;
+  --text-dark: #2c3e50;
+  --shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Main Container (Jo aapne App.js mein use kiya hai) */
+.container {
+  background: white;
+  width: 90%;
+  max-width: 300px;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Heading styles for all screens */
+h2 {
+  color: var(--hospital-blue);
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+}
+
+/* Button Styling (Kiosk touch-friendly) */
+button {
+  background-color: var(--hospital-blue);
+  color: white;
+  border: none;
+  padding: 11px 19px;
+  font-size: 0.7rem;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 50%;
+  margin-top: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #004494;
+  transform: translateY(-2px);
+}
+
+/* Card Styling for Aadhaar, Doctor, and Payment Modes */
+.aadhaar-card, .doctor-card, .mode-card {
+  background: var(--hospital-light-blue);
+  border: 2px solid transparent;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.mode-card:hover, .doctor-card:hover {
+  border-color: var(--hospital-blue);
+}
+
+/* Receipt Screen (Step 6) */
+.receipt-box {
+  border: 2px dashed #ccc;
+  padding: 20px;
+  text-align: left;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.receipt-header {
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Success Animation for Payment */
+.payment-success {
+  color: var(--success-green);
+  font-size: 4rem;
+  margin-bottom: 10px;
+}
