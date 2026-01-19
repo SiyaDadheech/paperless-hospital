@@ -1,17 +1,19 @@
-function Payment({ onPaid }) {
+const API_BASE = process.env.REACT_APP_API_URL;
+const RAZORPAY_KEY = process.env.REACT_APP_RAZORPAY_KEY_ID;
+
+function Payment({ amount, onPaid }) {
   const payNow = async () => {
-    const res = await fetch("http://localhost:5000/api/payment/create-order", {
+    // 1️⃣ Create order
+    const res = await fetch(`${API_BASE}/api/payment/create-order`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ amount })
     });
     const order = await res.json();
-    const keyRes = await fetch("http://localhost:5000/api/payment/razorpay-key");
-    const { key } = await keyRes.json();
+
+    // 2️⃣ Razorpay options
     const options = {
-      key: key,
+      key: RAZORPAY_KEY,
       amount: order.amount,
       currency: "INR",
       order_id: order.id,
@@ -34,6 +36,43 @@ function Payment({ onPaid }) {
 }
 
 export default Payment;
+
+// function Payment({ onPaid }) {
+//   const payNow = async () => {
+//     const res = await fetch("http://localhost:5000/api/payment/create-order", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json"
+//       },
+//       body: JSON.stringify({ amount })
+//     });
+//     const order = await res.json();
+//     const keyRes = await fetch("http://localhost:5000/api/payment/razorpay-key");
+//     const { key } = await keyRes.json();
+//     const options = {
+//       key: key,
+//       amount: order.amount,
+//       currency: "INR",
+//       order_id: order.id,
+//       name: "Smart Hospital",
+//       description: "Consultation Fee",
+//       handler: function () {
+//         onPaid("ONLINE");
+//       }
+//     };
+
+//     new window.Razorpay(options).open();
+//   };
+
+//   return (
+//     <div className="card center">
+//       <h2>Online Payment</h2>
+//       <button className="btn" onClick={payNow}>Pay ₹{amount}</button>
+//     </div>
+//   );
+// }
+
+// export default Payment;
 
 // function Payment({ onPaid }) {
 //   const payNow = async () => {
